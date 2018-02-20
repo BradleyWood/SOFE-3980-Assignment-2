@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.bradleywood.checkers</groupId>
-    <artifactId>checkers</artifactId>
+    <groupId>org.bradleywood.spgame</groupId>
+    <artifactId>sliding-puzzle</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>checkers</name>
+    <name>sliding-puzzle</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -67,7 +67,7 @@
                 <executions>
                     <execution>
                         <id>sqtf</id>
-                        <phase>package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>java</goal>
                         </goals>
@@ -77,7 +77,8 @@
                     <mainClass>org.sqtf.TestRunner</mainClass>
                     <arguments>
                         <argument>target/test-classes/</argument>
-                        <argument>target/sqtf-reports/</argument>
+                        <argument>-display</argument>
+						<argument>-display</argument>
                     </arguments>
                 </configuration>
             </plugin>
