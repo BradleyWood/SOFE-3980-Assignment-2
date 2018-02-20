@@ -17,8 +17,8 @@ public class Utility {
         int width = image.getWidth() / d;
         int height = image.getHeight() / d;
 
-        for (int x = 0; x < image.getWidth(); x += width) {
-            for (int y = 0; y < image.getWidth(); y += height) {
+        for (int x = 0; x + width < image.getWidth(); x += width) {
+            for (int y = 0; y + height < image.getWidth(); y += height) {
                 images.add(image.getSubimage(x, y, width, height));
             }
         }
