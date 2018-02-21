@@ -34,6 +34,8 @@ public class Utility {
      * @return
      */
     public static boolean isTouching(final int idxA, final int idxB, final int sideLen) {
+        if (idxA < 0 || idxB < 0 || idxA >= sideLen * sideLen || idxB > sideLen * sideLen)
+            return false;
         int x1 = getX(idxA, sideLen);
         int y1 = getY(idxA, sideLen);
         int x2 = getX(idxB, sideLen);
