@@ -1,6 +1,7 @@
 package org.bradleywood.spgame;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -35,11 +36,40 @@ public class GameModel {
 
     public void randomize() {
         synchronized (piecePositions) {
+            int emptyIdx = -1;
             for (int i = 0; i < piecePositions.length; i++) {
-                int c = i + random.nextInt(piecePositions.length - i);
-                int tmp = piecePositions[i];
-                piecePositions[i] = piecePositions[c];
-                piecePositions[c] = tmp;
+                if (piecePositions[i] == piecePositions.length - 1) {
+                    emptyIdx = i;
+                }
+            }
+            int sideLen = (int) Math.sqrt(numPieces());
+            int emptyX = Utility.getX(emptyIdx, sideLen);
+            int emptyY = Utility.getY(emptyIdx, sideLen);
+            for (int i = 0; i < 200; i++) {
+                List<Integer> indicies = new ArrayList<>();
+                if (emptyX == 0) {
+                    indicies.add(Utility.getIdx(emptyX + 1, emptyY, sideLen));
+                } else if (emptyX == sideLen - 1) {
+                    indicies.add(Utility.getIdx(emptyX - 1, emptyY, sideLen));
+                } else {
+                    indicies.add(Utility.getIdx(emptyX + 1, emptyY, sideLen));
+                    indicies.add(Utility.getIdx(emptyX - 1, emptyY, sideLen));
+                }
+                if (emptyY == 0) {
+                    indicies.add(Utility.getIdx(emptyX, emptyY + 1, sideLen));
+                } else if (emptyY == sideLen - 1) {
+                    indicies.add(Utility.getIdx(emptyX, emptyY - 1, sideLen));
+                } else {
+                    indicies.add(Utility.getIdx(emptyX, emptyY + 1, sideLen));
+                    indicies.add(Utility.getIdx(emptyX, emptyY - 1, sideLen));
+                }
+                int spIdx = indicies.get(random.nextInt(indicies.size()));
+                int tmp = piecePositions[emptyIdx];
+                piecePositions[emptyIdx] = piecePositions[spIdx];
+                piecePositions[spIdx] = tmp;
+                emptyIdx = spIdx;
+                emptyX = Utility.getX(emptyIdx, sideLen);
+                emptyY = Utility.getY(emptyIdx, sideLen);
             }
         }
     }
