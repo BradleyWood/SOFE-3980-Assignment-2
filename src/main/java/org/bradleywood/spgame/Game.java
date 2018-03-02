@@ -32,6 +32,18 @@ public class Game implements MouseListener {
         return -1;
     }
 
+    public boolean checkWin() {
+        int[] pieces = model.getPiecePositions();
+        synchronized (pieces) {
+            for (int i = 0; i < pieces.length; i++) {
+                if (pieces[i] != i) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public void mouseReleased(MouseEvent e) {
         if (e.getButton() != MouseEvent.BUTTON1) {
