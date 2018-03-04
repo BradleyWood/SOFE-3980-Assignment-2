@@ -1,7 +1,7 @@
 package org.bradleywood.spgame;
 
 
-import org.junit.Assert;
+import org.sqtf.assertions.Assert;
 import org.sqtf.annotations.Before;
 import org.sqtf.annotations.Test;
 
