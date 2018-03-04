@@ -23,7 +23,8 @@ public class Application {
         }
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(515, 540);
+        frame.setSize(205, 225);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 }
