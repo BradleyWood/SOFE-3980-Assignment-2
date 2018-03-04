@@ -18,7 +18,8 @@ public class Application {
             frame.add(game.getView());
             game.getModel().randomize();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Failed to find puzzle image!");
+            System.exit(1);
         }
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
