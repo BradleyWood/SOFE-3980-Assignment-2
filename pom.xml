@@ -47,7 +47,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass></mainClass>
+                            <mainClass>org.bradleywood.spgame.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
