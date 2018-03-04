@@ -4,9 +4,7 @@ import org.sqtf.annotations.Before;
 import org.sqtf.annotations.Test;
 import org.sqtf.assertions.Assert;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +16,7 @@ public class GameModelTest {
 
     @Before
     public void setupImages() throws IOException {
-        image = ImageIO.read(new File("numbers.png"));
+        image = new BufferedImage(256, 256, BufferedImage.TYPE_4BYTE_ABGR);
         images = Utility.imageSplit(image, 4);
     }
 
