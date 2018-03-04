@@ -1,5 +1,6 @@
 package org.bradleywood.spgame;
 
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -22,7 +23,7 @@ public class Game implements MouseListener {
         return view;
     }
 
-    private int getEmptyPos() {
+    public int getEmptyPos() {
         int[] pieces = model.getPiecePositions();
         for (int i = 0; i < pieces.length; i++) {
             if (pieces[i] == pieces.length - 1) {
@@ -68,6 +69,12 @@ public class Game implements MouseListener {
             int tmp = positions[idx];
             positions[idx] = positions[emptyIdx];
             positions[emptyIdx] = tmp;
+            view.repaint();
+        }
+
+        if (checkWin()) {
+            JOptionPane.showMessageDialog(view, "You win!");
+            model.randomize();
             view.repaint();
         }
     }

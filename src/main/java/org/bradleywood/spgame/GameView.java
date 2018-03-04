@@ -9,7 +9,7 @@ public class GameView extends JPanel {
 
     private final GameModel model;
 
-    GameView(final GameModel model) {
+    public GameView(final GameModel model) {
         this.model = model;
     }
 
