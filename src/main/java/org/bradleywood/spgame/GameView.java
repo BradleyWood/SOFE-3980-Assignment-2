@@ -18,7 +18,7 @@ public class GameView extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setColor(Color.GRAY);
