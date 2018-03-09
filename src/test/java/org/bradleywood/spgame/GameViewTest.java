@@ -1,6 +1,6 @@
 package org.bradleywood.spgame;
 
-import org.sqtf.annotations.Before;
+import org.sqtf.annotations.Parameters;
 import org.sqtf.annotations.Test;
 import org.sqtf.assertions.Assert;
 
@@ -14,15 +14,11 @@ public class GameViewTest {
     private BufferedImage image;
     private GameView gameView;
     private GameModel model;
-    private int WIDTH = 256;
-    private int HEIGHT = 256;
-    private int d = 4;
     private int tileWidth;
     private int tileHeight;
 
-    @Before
-    public void setup() {
-        image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
+    private void setup(int width, int height, int d) {
+        image = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
 
         Graphics g = image.getGraphics();
 
@@ -39,7 +35,7 @@ public class GameViewTest {
         }
 
         images = Utility.imageSplit(image, d);
-        model = new GameModel(images, WIDTH, HEIGHT);
+        model = new GameModel(images, width, height);
         model.randomize();
         gameView = new GameView(model);
     }
@@ -48,8 +44,10 @@ public class GameViewTest {
      * Tests that the tile is displayed in the correct position by checking color at given coordinates
      */
     @Test
-    public void testTileDisplay() {
-        BufferedImage img = new BufferedImage(WIDTH, HEIGHT, image.getType());
+    @Parameters(csvfile = "testData/game_view_data.csv", name = "TestTileDisplay: w=$0, h=$1, d=$2")
+    public void testTileDisplay(int width, int height, int d) {
+        setup(width, height, d);
+        BufferedImage img = new BufferedImage(width, height, image.getType());
         gameView.paintComponent(img.getGraphics());
 
         int[] piecePositions = model.getPiecePositions();
